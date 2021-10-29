@@ -1,10 +1,8 @@
 on:
-  push:
+  pull_request:
     branches:
-    - '*'
-    - '!main'
-    - '!develop'
-    - '!master'
+      - develop
+    types: [closed]
 
 name: Transition Issue
 
@@ -12,6 +10,7 @@ jobs:
   test-transition-issue:
     name: Transition Issue
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
     steps:
     - name: Login
       uses: atlassian/gajira-login@master
@@ -35,4 +34,4 @@ jobs:
       with:
         # 前のステップのアウトプットを参照
         issue: ${{ steps.find.outputs.issue }}
-        transition: "In progress"
+        transition: "DEPLOYED"
