@@ -9,7 +9,6 @@ jobs:
   test-transition-issue:
     name: Transition Issue
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
     steps:
     - name: Login
       uses: atlassian/gajira-login@master
