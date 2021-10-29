@@ -1,5 +1,9 @@
 on:
-  push
+  push:
+    branches:
+    - '*'
+    - '!develop'
+    - '!master'
 
 name: Transition Issue
 
@@ -30,4 +34,4 @@ jobs:
       with:
         # 前のステップのアウトプットを参照
         issue: ${{ steps.find.outputs.issue }}
-        transition: "進行中"
+        transition: "In progress"
