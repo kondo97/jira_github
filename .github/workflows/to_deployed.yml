@@ -21,10 +21,9 @@ jobs:
 
     # プッシュされたコミットに記載された課題キーを抽出する    
     - name: Find in commit messages
-      id: find
       uses: atlassian/gajira-find-issue-key@master
       with:
-        string: ${{ github.event.head_ref }}
+        string: ${{ github.head_ref }}
 
     # 課題キーが特定できればJiraに対してトランジションを発行　    
     - name: Transition issue
