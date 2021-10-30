@@ -24,7 +24,7 @@ jobs:
       id: find
       uses: atlassian/gajira-find-issue-key@master
       with:
-        string: ${{ github.event.pull_request.head_ref }}
+        string: ${{ github.event.head_ref }}
 
     # 課題キーが特定できればJiraに対してトランジションを発行　    
     - name: Transition issue
