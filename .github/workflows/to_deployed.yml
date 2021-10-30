@@ -1,7 +1,8 @@
 on:
-  push:
+  pull_request:
     branches:
-    - "develop"
+      - develop
+    types: [closed]
 
 name: Transition Issue
 
@@ -9,6 +10,7 @@ jobs:
   test-transition-issue:
     name: Transition Issue
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
     steps:
     - name: Login
       uses: atlassian/gajira-login@master
@@ -22,7 +24,7 @@ jobs:
       id: find
       uses: atlassian/gajira-find-issue-key@master
       with:
-        string: ${{ github.event.ref }}
+        string: ${{ github.base_ref }}
 
     # 課題キーが特定できればJiraに対してトランジションを発行　    
     - name: Transition issue
