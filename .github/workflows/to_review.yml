@@ -21,7 +21,7 @@ jobs:
       id: find
       uses: atlassian/gajira-find-issue-key@master
       with:
-        string1: ${{ github.event.pull_request.title github.event.pull_request.description }}
+        string1: ${{ github.event.pull_request.title }} ||  ${{ github.event.pull_request.description }}
         
     - name: Transition issue
       uses: atlassian/gajira-transition@master
